@@ -1,0 +1,127 @@
+{
+  "name": "Telegram → Google Sheets | Demo.",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1f11bde5-1d07-4cf9-80da-de64b8573c0b",
+      "name": "Telegram Trigger",
+      "webhookId": "17a3fde1-e05d-4d9c-ac89-f7d37733b35e",
+      "credentials": {
+        "telegramApi": {
+          "id": "pzWxIiGlioqyItPs",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1EN5fu6XRLFyax2MqJEnomXUHdBrlInTljTpmJZm4IdI",
+          "mode": "list",
+          "cachedResultName": "Telegram → Google Sheets Demo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EN5fu6XRLFyax2MqJEnomXUHdBrlInTljTpmJZm4IdI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Лист1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EN5fu6XRLFyax2MqJEnomXUHdBrlInTljTpmJZm4IdI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date": "={{ new Date($json[\"message\"][\"date\"] * 1000).toLocaleString(\"ru-RU\") }}",
+            "Username": "={{$json[\"message\"][\"from\"][\"username\"]}}\n",
+            "Message": "={{$json[\"message\"][\"text\"]}}\n"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Username",
+              "displayName": "Username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "77840b79-9f12-48be-9abb-70434d6eb46e",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CERilkFSolVFSrjf",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d4b53cf2-e486-4afd-ba82-ce3a07a5537c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "de234b23fbdef5d0b8dae26e03f38318edaed75c9a2443c7522b6dde3aa8832c"
+  },
+  "id": "TMCF7BZtJuWh5eVQ",
+  "tags": []
+}
